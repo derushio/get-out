@@ -1,6 +1,19 @@
 <template lang='pug'>
 v-app#app
     v-navigation-drawer(app temporary v-model='drawer')
+        v-list-item
+            v-list-item-content
+                v-list-item-title.title GET OUT
+        v-divider
+
+        v-list(dense nav)
+            v-list-item(:to='{ name: "Home" }' exact)
+                v-list-item-content: v-list-item-title ホーム
+            v-list-item(:to='{ name: "Costume" }' exact)
+                v-list-item-content: v-list-item-title コスチューム
+            v-list-item(:to='{ name: "Quests" }' exact)
+                v-list-item-content: v-list-item-title クエスト
+
     v-system-bar
     v-app-bar(app color='primary' dark height='54px')
         v-app-bar-nav-icon.hidden-sm-and-up.nav-icon(@click.stop='drawer = !drawer')

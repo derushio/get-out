@@ -1,7 +1,6 @@
 <template lang='pug'>
 v-layout#Home(fill-height column)
     .main-pane
-        hello-world
 </template>
 
 <script lang='ts'>
