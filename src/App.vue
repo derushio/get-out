@@ -12,7 +12,7 @@ v-app#app
             v-list-item(:to='{ name: "Costume" }' exact)
                 v-list-item-content: v-list-item-title コスチューム
             v-list-item(:to='{ name: "Quests" }' exact)
-                v-list-item-content: v-list-item-title クエスト
+                v-list-item-content: v-list-item-title クエストリスト
 
     v-system-bar
     v-app-bar(app color='primary' dark height='54px')

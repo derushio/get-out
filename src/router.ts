@@ -25,5 +25,10 @@ export default new Router({
             name: 'Quests',
             component: () => import('@/views/Quests.vue'),
         },
+        {
+            path: '/scorehistory',
+            name: 'ScoreHistory',
+            component: () => import('@/components/graph/ScoreHistory.vue'),
+        },
     ],
 });

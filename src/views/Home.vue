@@ -1,31 +1,42 @@
 <template lang='pug'>
-v-layout#Home(fill-height column)
+v-layout#Home(fill-height column v-resize='resized')
     .main-pane
         v-layout.full-height(column)
             v-flex.red(xs7)
                 //- アバター ＋ レベル情報
-            v-flex(xs5)
-                v-tabs(v-model='tab' background-color='primary' dark grow centered)
+            v-responsive(:height='300')
+                v-tabs(v-model='tab' background-color='primary' dark grow centered show-arrows)
                     v-tabs-slider
                     v-tab スコア
                     v-tab クエスト履歴
-
-                v-tabs-items.full-height(v-model='tab' fluid)
+                v-tabs-items(v-model='tab')
                     v-tab-item.full-height
-                        p hoge
+                        score-history(ref='scoreHistory' :height='300 - 48')
                     v-tab-item.full-height
-                        p fuga
 
 </template>
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
+import ScoreHistory from '@/components/graph/ScoreHistory.vue';
+import { aswait } from 'instant-vuetify-overlays/src/utils/AsyncTimeout';
 
 @Component({
-    components: {},
+    components: {
+        ScoreHistory,
+    },
 })
 export default class Home extends Vue {
     protected tab = 0;
+
+    protected resized() {
+        const scoreHistory = this.$refs.scoreHistory as Vue | undefined;
+        if (!scoreHistory) {
+            return;
+        }
+
+        scoreHistory.$emit('renderChart');
+    }
 }
 </script>
 
