@@ -1,6 +1,11 @@
 <template lang='pug'>
 v-layout#Home(fill-height column)
     .main-pane
+        v-layout.full-height(column)
+            v-flex.red(xs7)
+                //- アバター ＋ レベル情報
+            v-flex.blue(xs5)
+                //- 情報グラフ
 </template>
 
 <script lang='ts'>
@@ -16,8 +21,8 @@ export default class Home extends Vue {}
 @require '~@/assets/styles/entry/_view.styl';
 
 html
-    scroll-view: true;
-    // static-view: true;
+    // scroll-view: true;
+    static-view: true;
 
 #Home
     .main-pane
