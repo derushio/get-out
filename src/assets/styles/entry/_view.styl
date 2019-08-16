@@ -1,0 +1,21 @@
+@require './_variable.styl';
+@require '../style/_common.styl';
+
+// for html
+scroll-view()
+    width: 100vw; height: auto;
+
+    &, body, #app, #app > div, #content, #content > div
+        overflow-x: hidden;
+
+// for html
+static-view()
+    // height relay
+    &, body, #app, #app > div, #content, #content > div
+        width: 100%; height: 100%;
+        overflow-x: hidden; overflow-y: hidden;
+
+main-pane($max-width = 100%)
+    width: 100%; max-width: $max-width;
+    height: 100%;
+    x-center();
