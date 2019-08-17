@@ -9,7 +9,7 @@ export default class HistoryApi {
 
     public static async generateRandomData(num: number) {
         const history = [] as Quest[];
-        for (const n of Array(num)) {
+        for (const n in Array(num)) {
             history.push({
                 id: n,
                 title: `ran_quest_${n}`,
