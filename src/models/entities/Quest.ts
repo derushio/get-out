@@ -1,8 +1,9 @@
 export default interface Quest {
+    id: number;
     title: string;
     desc: string;
     exp: number;
-    satisfyLevel: number;
+    level: number;
     src: string;
     /** DATE TIME */
     clearTime: number;

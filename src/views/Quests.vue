@@ -17,20 +17,17 @@ v-layout#Quests(fill-height column)
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
+import Quest from '@/models/entities/Quest';
+import QuestApi from '@/logics/api/QuestApi';
 
 @Component
 export default class Quests extends Vue {
     protected dialog: boolean = false;
-    protected quests = [
-        // tslint:disable-next-line max-line-length
-        {title: 'コンビニに行こう', level: 1, src: 'https://images.unsplash.com/photo-1484813047368-3a2883981427?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60', exp: 100},
-        // tslint:disable-next-line max-line-length
-        {title: 'イヤホンを外してコンビニに行こう', level: 2, src: 'https://images.unsplash.com/photo-1529602266431-5e205a27eb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60', exp: 1000},
-        // tslint:disable-next-line max-line-length
-        {title: 'マスクを外してコンビニに行こう', level: 3, src: 'https://images.unsplash.com/photo-1564933031273-7ed87369d6f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60', exp: 2000},
-        // tslint:disable-next-line max-line-length
-        {title: 'サングラスを外してコンビニに行こう', level: 3, src: 'https://images.unsplash.com/photo-1505554898845-050c97a90ad6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60', exp: 4000},
-    ];
+    protected quests =  [] as Quest[];
+    protected async mounted() {
+        this.quests = await QuestApi.getAllAvailableQuests();
+        console.log(this.quests);
+    }
 
     protected async openClearDialog(i: number) {
         const quest = this.quests[i];
