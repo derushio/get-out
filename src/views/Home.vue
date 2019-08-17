@@ -5,7 +5,10 @@ v-layout#Home(fill-height column v-resize='redraw')
             v-flex.xs-10
                 //- アバター ＋ レベル情報
                 v-layout.full-height(column)
-                    v-flex: score-meter(radius='90' percent='82')
+                    v-flex.relative
+                        score-meter(radius='90' percent='82')
+                        v-img.absolute.avator(:src='require("@/assets/imgs/avator/level1.png")' contain)
+                    v-btn(@click='generateAndViewTestData()') ランダムデータ生成
                     h2.text-center Lv.25
                     v-btn(@click='generateAndViewTestData') ランダムデータ生成
 
@@ -81,6 +84,11 @@ html
 #Home
     .main-pane
         main-pane();
+
+        .avator
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            height: 80%;
 
         .score
             height: 300px; min-height: 300px; max-height: 300px;
