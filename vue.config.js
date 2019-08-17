@@ -12,9 +12,9 @@ const env = Object.assign({},
 /**
  * ビルド環境
  */
-env.NODE_ENV = (env.NODE_ENV === 'production')
-    ? env.NODE_ENV
-    : process.env.NODE_ENV;
+env.NODE_ENV = (env.NODE_ENV === 'production') ?
+    env.NODE_ENV :
+    process.env.NODE_ENV;
 console.log('NODE_ENV:', env.NODE_ENV);
 
 /**
@@ -24,9 +24,9 @@ const isProduct = env.NODE_ENV == 'production';
 
 module.exports = {
     // 商用の場合はpathをきちんと設定したほうが良い
-    publicPath: isProduct
-        ? '/'
-        : './',
+    publicPath: isProduct ?
+        '/' :
+        './',
 
     css: {
         sourceMap: !isProduct,
@@ -39,6 +39,7 @@ module.exports = {
     configureWebpack: {
         devServer: {
             host: '0.0.0.0',
+            port: 8070,
             disableHostCheck: true,
             https: false,
         },
