@@ -17,7 +17,7 @@ v-layout#Home(fill-height column v-resize='redraw')
                     v-tabs-slider
                     v-tab スコア
                     v-tab クエスト履歴
-                v-tabs-items(v-model='tab')
+                v-tabs-items(v-model='tab' @change='setTimeout(redraw, 100)')
                     v-tab-item.full-height
                         score-history(ref='scoreHistory' :height='300 - 48' :scoreArray='scores')
                     v-tab-item.full-height.quest-history
