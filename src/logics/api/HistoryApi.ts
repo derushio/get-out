@@ -17,7 +17,7 @@ export default class HistoryApi {
                 exp: 10 + Math.floor(Math.random() * 20),
                 level: 3,
                 // TODO: これはダミーデータ
-                clearTime: RandomUtil.rand(moment().subtract('day', 12).unix(), moment().unix()) * 1000,
+                clearTime: RandomUtil.rand(moment().add('day', -12).unix(), moment().unix()) * 1000,
                 // tslint:disable-next-line: max-line-length
                 src: 'https://images.unsplash.com/photo-1484813047368-3a2883981427?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
                 // TODO: これはダミーデータ
@@ -42,7 +42,7 @@ export default class HistoryApi {
     public static async statisticsWeeklyScore() {
         const history = await this.getHistory();
         const weekly = [0, 0, 0, 0, 0, 0, 0];
-        const range = new DateRange(moment().subtract('day', 8), moment().subtract('day', 1));
+        const range = new DateRange(moment().add('day', -8), moment().add('day', -1));
         for (const quest of history) {
             const day = moment(quest.clearTime);
             if (!range.contains(day)) {

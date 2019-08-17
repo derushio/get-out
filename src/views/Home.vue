@@ -5,10 +5,11 @@ v-layout#Home(fill-height column v-resize='redraw')
             v-flex.xs-10
                 //- アバター ＋ レベル情報
                 v-layout.full-height(column)
+                    h2.text-center {{ user.name }}
                     v-flex.relative
-                        score-meter(radius='90' :percent='getExpPercent(user.exp)')
+                        score-meter(:percent='getExpPercent(user.exp)')
                         v-img.absolute.avator(:src='avators[getLevelByExp(user.exp)]' contain)
-                    h2.text-center Lv.{{getLevelByExp(user.exp)}}
+                    h3.text-center Lv.{{getLevelByExp(user.exp)}}
                     v-btn(@click='generateAndViewTestData') ランダムデータ生成
 
             .score
