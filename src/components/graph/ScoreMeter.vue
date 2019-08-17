@@ -1,7 +1,6 @@
 <template lang='pug'>
 // ref: https://codepen.io/egorava/pen/wGmmJW
-.score-meter
-    canvas#canvas(:width='radius*2.2' :height='radius*2.2' ref='canvas')
+canvas#canvas(:width='radius*2.2' :height='radius*2.2' ref='canvas')
 </template>
 
 <script lang='ts'>
@@ -61,8 +60,6 @@ export default class ScoreMater extends Vue {
 
 <style lang='stylus' scoped>
 @require '~@/assets/styles/entry/_variable.styl';
-
-.todays-score {}
 
 :root {
   background: #fff;
