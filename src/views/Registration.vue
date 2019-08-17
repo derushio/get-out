@@ -127,7 +127,7 @@ html
 
 #Registration
     .main-pane
-        main-pane();
+        main-pane(600px);
     .v-stepper__wrapper
         height: 100%;
 </style>

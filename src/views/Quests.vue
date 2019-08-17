@@ -47,7 +47,7 @@ export default class Quests extends Vue {
             this.isCompleted = true;
         }
     }
-    
+
 
     protected async mounted() {
         this.updateQuest();
@@ -75,7 +75,7 @@ html
 
 #Quests
     .main-pane
-        main-pane();
+        main-pane(600px);
 
         .quest-img
             width: 100%; height: 100%;

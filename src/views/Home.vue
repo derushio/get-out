@@ -95,7 +95,7 @@ html
 
 #Home
     .main-pane
-        main-pane();
+        main-pane(600px);
 
         .avator
             top: 50%; left: 50%;
