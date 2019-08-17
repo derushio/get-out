@@ -19,6 +19,9 @@ v-layout#Quests(fill-height column)
 import { Component, Vue } from 'vue-property-decorator';
 import Quest from '@/models/entities/Quest';
 import QuestApi from '@/logics/api/QuestApi';
+import UserApi from '@/logics/api/UserApi';
+import User from '@/models/entities/User';
+import { getLevelByExp } from '@/models/entities/User';
 
 @Component
 export default class Quests extends Vue {
@@ -26,7 +29,12 @@ export default class Quests extends Vue {
     protected quests =  [] as Quest[];
 
     protected async updateQuest() {
-        this.quests = await QuestApi.getAllAvailableQuests();
+        const user = await UserApi.getUser(0); // 0でいいのかな？
+        if(!user) {
+            throw new Error('No User Found');
+        }
+        const userExp = user.exp;
+        this.quests = await QuestApi.getAvailableQuestsByLevel(getLevelByExp(userExp));
     }
 
     protected async mounted() {
