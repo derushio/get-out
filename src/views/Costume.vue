@@ -51,5 +51,5 @@ html
 
 #Costume
     .main-pane
-        main-pane();
+        main-pane(600px);
 </style>
