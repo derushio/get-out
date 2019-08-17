@@ -18,10 +18,7 @@ export function getLevelByExp(exp: number) {
         level = 3;
     } else if (4000 > exp) {
         level = 4;
-    } else if (5000 > exp) {
-        level = 5;
     }
-
     return level;
 }
 
