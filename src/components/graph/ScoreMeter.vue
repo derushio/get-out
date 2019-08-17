@@ -22,7 +22,6 @@ export default class ScoreMater extends Vue {
         await aswait(100);
         this.size.width = this.$el.clientWidth;
         this.size.height = this.$el.clientHeight;
-        console.log(this.size.width, this.size.height);
         this.cubeSize = Math.min(this.size.width, this.size.height);
         this.radius = this.cubeSize / 2.2;
         await aswait(100);
@@ -36,7 +35,6 @@ export default class ScoreMater extends Vue {
         const canvasY = can.height;
         const posX = canvasX / 2;
         const posY = canvasY / 2;
-        console.log(canvasX, canvasY, posX, posY);
         const fps = 1000 / 200;
         const onepercentage = 360 / 100;
         const result = onepercentage * this.percent;
@@ -87,19 +85,6 @@ canvas {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-}
-
-span#percenta {
-    display: block;
-    position: relative;
-
-    font-size: 3em;
-    transform: translate(-50%, -50%);
-    color: #3949AB;
-}
-
-span#percenta::after {
-    content: '%';
 }
 
 .canvas-wrap {
