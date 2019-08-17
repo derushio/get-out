@@ -11,14 +11,13 @@ export default class ScoreMater extends Vue {
     @Prop({ default: () => 200 })
     public radius!: number;
 
-    @Prop({ default: () => 72 })
+    @Prop({ default: () => 0 })
     public percent!: number;
 
     protected Math = Math;
     protected percentage: number = 0;
     protected mounted() {
         const can = this.$refs.canvas as HTMLCanvasElement;
-        const spanpercentage = this.$refs.percent;
         const c = can.getContext('2d');
         const canvasX = can.width;
         const canvasY = can.height;
@@ -27,7 +26,6 @@ export default class ScoreMater extends Vue {
         const fps = 1000 / 200;
         const onepercentage = 360 / 100;
         const result = onepercentage * this.percent;
-        console.log(this.percent);
         let percentage = 0;
         c!.lineCap = 'round';
         let degrees = 0;
