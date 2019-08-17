@@ -1,22 +1,32 @@
 <template lang='pug'>
 // ref: https://codepen.io/egorava/pen/wGmmJW
-canvas#canvas(:width='radius*2.2' :height='radius*2.2' ref='canvas')
+div
+    canvas#canvas(:width='radius*2.2' :height='radius*2.2' ref='canvas')
 </template>
 
 <script lang='ts'>
 import { Component, Vue, Prop } from 'vue-property-decorator';
+import { aswait } from 'instant-vuetify-overlays/src/utils/AsyncTimeout';
 
 @Component
 export default class ScoreMater extends Vue {
-    @Prop({ default: () => 200 })
-    public radius!: number;
-
     @Prop({ default: () => 0 })
     public percent!: number;
 
+    public radius = 0;
+    protected size = { width: 0, height: 0 };
     protected Math = Math;
     protected percentage: number = 0;
-    protected mounted() {
+
+    protected async mounted() {
+        await aswait(100);
+        this.size.width = this.$el.clientWidth;
+        this.size.height = this.$el.clientHeight;
+
+        this.draw();
+    }
+
+    protected draw() {
         const can = this.$refs.canvas as HTMLCanvasElement;
         const c = can.getContext('2d');
         const canvasX = can.width;
@@ -64,31 +74,31 @@ export default class ScoreMater extends Vue {
 @require '~@/assets/styles/entry/_variable.styl';
 
 :root {
-  background: #fff;
+    background: #fff;
 }
 
 canvas {
-  position: absolute;
-  display: block;
-  left: 50%;
-  transform: translateX(-50%);
+    position: absolute;
+    display: block;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 span#percenta {
-  display: block;
-  position: relative;
-  
-  font-size: 3em;
-  transform: translate(-50%, -50%);
-  color: #3949AB;
+    display: block;
+    position: relative;
+
+    font-size: 3em;
+    transform: translate(-50%, -50%);
+    color: #3949AB;
 }
 
 span#percenta::after {
-  content: '%';
+    content: '%';
 }
 
 .canvas-wrap {
-  display: block;
-  position: relative;
+    display: block;
+    position: relative;
 }
 </style>
