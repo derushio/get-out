@@ -9,10 +9,10 @@ export default class HistoryApi {
 
     public static async generateRandomData(num: number) {
         const history = [] as Quest[];
-        for (const n in Array(num)) {
+        for (const n of [ ...Array(num).keys() ]) {
             history.push({
                 id: n,
-                title: `ran_quest_${n}`,
+                title: `ランダムクエスト${n}番`,
                 desc: `randomly generated quest No.${n}`,
                 exp: 10 + Math.floor(Math.random() * 20),
                 level: 3,
@@ -23,6 +23,7 @@ export default class HistoryApi {
                 // TODO: これはダミーデータ
             });
         }
+        this.sort(history);
         LocalStorage.save(this.indexName, history);
     }
 
@@ -34,15 +35,7 @@ export default class HistoryApi {
     public static async addFinishedQuestToDatabase(quest: Quest) {
         const history = await this.getHistory();
         history.push(quest);
-        // TODO: ソートしたい
-        history.sort((a, b) => {
-            if (a.clearTime < b.clearTime) {
-                return 1;
-            } else if (a.clearTime > b.clearTime) {
-                return -1;
-            }
-            return 0;
-        });
+        this.sort(history);
         LocalStorage.save(this.indexName, history);
     }
 
@@ -59,5 +52,16 @@ export default class HistoryApi {
         }
 
         return weekly;
+    }
+
+    protected static sort(data: Quest[]){
+        data.sort((a, b) => {
+            if (a.clearTime < b.clearTime) {
+                return 1;
+            } else if (a.clearTime > b.clearTime) {
+                return -1;
+            }
+            return 0;
+        });
     }
 }

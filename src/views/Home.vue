@@ -6,8 +6,8 @@ v-layout#Home(fill-height column v-resize='redraw')
                 //- アバター ＋ レベル情報
                 v-layout.full-height(column)
                     v-flex: score-meter(radius='90' percent='82')
-                    v-btn(@click='generateAndViewTestData()') ランダムデータ生成
                     h2.text-center Lv.25
+                    v-btn(@click='generateAndViewTestData') ランダムデータ生成
 
             .score
                 v-tabs(v-model='tab' background-color='primary' dark grow centered show-arrows)
@@ -18,8 +18,16 @@ v-layout#Home(fill-height column v-resize='redraw')
                     v-tab-item.full-height
                         score-history(ref='scoreHistory' :height='300 - 48' :scoreArray='scores')
                     v-tab-item.full-height
-                        v-card(v-for='quest, i in history' :key='i')
-                            v-card-text {{ quest.title }}
+                        v-card.history-item.my-3(v-for='quest, i in history' :key='i')
+                            v-card-text
+                                v-row.px-4(justify='left' align='center')
+                                    span.d-block.title.mr-4
+                                        span {{ quest.exp }}
+                                        span.exp exp
+                                    v-divider.mr-4(vertical)
+                                    .right
+                                        span.d-block {{ quest.title }}
+                                        span.d-block {{ moment(quest.clearTime).format('YYYY/MM/DD') }}
 
 </template>
 
@@ -30,6 +38,7 @@ import { aswait } from 'instant-vuetify-overlays/src/utils/AsyncTimeout';
 import ScoreMeter from '@/components/graph/ScoreMeter.vue';
 import HistoryApi from '@/logics/api/HistoryApi';
 import Quest from '@/models/entities/Quest';
+import moment from 'moment';
 
 @Component({
     components: {
@@ -38,6 +47,8 @@ import Quest from '@/models/entities/Quest';
     },
 })
 export default class Home extends Vue {
+    protected moment = moment;
+
     protected tab = 0;
     protected scores = [0, 0, 0, 0, 0, 0, 0];
     protected history = [] as Quest[];
@@ -73,4 +84,12 @@ html
 
         .score
             height: 300px; min-height: 300px; max-height: 300px;
+
+        .history-item
+            max-width: 400px;
+            margin-left: auto; margin-right: auto;
+
+            .exp
+                margin-left: 0.15em;
+                font-size: 0.3em;
 </style>
