@@ -1,7 +1,7 @@
 <template lang='pug'>
 // ref: https://codepen.io/egorava/pen/wGmmJW
-div
-    canvas#canvas(:width='radius*2.2' :height='radius*2.2' ref='canvas')
+.canvas-wrap
+    canvas#canvas(:width='cubeSize' :height='cubeSize' ref='canvas' v-resize='resized')
 </template>
 
 <script lang='ts'>
@@ -15,14 +15,17 @@ export default class ScoreMater extends Vue {
 
     public radius = 0;
     protected size = { width: 0, height: 0 };
-    protected Math = Math;
+    protected cubeSize = 0;
     protected percentage: number = 0;
 
-    protected async mounted() {
+    protected async resized() {
         await aswait(100);
         this.size.width = this.$el.clientWidth;
         this.size.height = this.$el.clientHeight;
-
+        console.log(this.size.width, this.size.height);
+        this.cubeSize = Math.min(this.size.width, this.size.height);
+        this.radius = this.cubeSize / 2.2;
+        await aswait(100);
         this.draw();
     }
 
@@ -33,6 +36,7 @@ export default class ScoreMater extends Vue {
         const canvasY = can.height;
         const posX = canvasX / 2;
         const posY = canvasY / 2;
+        console.log(canvasX, canvasY, posX, posY);
         const fps = 1000 / 200;
         const onepercentage = 360 / 100;
         const result = onepercentage * this.percent;
@@ -100,5 +104,7 @@ span#percenta::after {
 .canvas-wrap {
     display: block;
     position: relative;
+    width: 100%;
+    height: 100%;
 }
 </style>

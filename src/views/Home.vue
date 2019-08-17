@@ -5,7 +5,7 @@ v-layout#Home(fill-height column v-resize='resized')
             v-flex
                 //- アバター ＋ レベル情報
                 score-meter(radius='180' percent='82')
-                h2.text-center Lv.25
+                //h2.text-center Lv.25
 
             .score
                 v-tabs(v-model='tab' background-color='primary' dark grow centered show-arrows)
