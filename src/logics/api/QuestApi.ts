@@ -136,7 +136,7 @@ export default class QuestApi {
     }
 
     public static async transferQuestsToHistory(questId: number) {
-        const doneQuests = LocalStorage.load(this.indexName) as Quest[];
+        const doneQuests = LocalStorage.load(this.indexName) as Quest[] || [];
         const allQuests = this.questData;
 
         const deletingQuest = allQuests.filter((e) => {
