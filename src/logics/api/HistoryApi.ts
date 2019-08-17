@@ -26,7 +26,7 @@ export default class HistoryApi {
         return history;
     }
 
-    public static async addQuest(quest: Quest) {
+    public static async addFinishedQuestToDatabase(quest: Quest) {
         const history = await this.getHistory();
         history.push(quest);
         this.sort(history);
