@@ -24,14 +24,20 @@ import QuestApi from '@/logics/api/QuestApi';
 export default class Quests extends Vue {
     protected dialog: boolean = false;
     protected quests =  [] as Quest[];
-    protected async mounted() {
+
+    protected async updateQuest() {
         this.quests = await QuestApi.getAllAvailableQuests();
-        console.log(this.quests);
+    }
+
+    protected async mounted() {
+        this.updateQuest();
     }
 
     protected async openClearDialog(i: number) {
         const quest = this.quests[i];
         await this.$vdialog.alert({ title: 'Result', message: `EXP GET!!<br />${quest.exp}` });
+        await QuestApi.transferQuestsToHistory(quest.id);
+        this.updateQuest();   
     }
     protected async openDetailDialog(i: number) {
         const quest = this.quests[i];
