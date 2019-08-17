@@ -11,6 +11,7 @@ export default class HistoryApi {
         const history = [] as Quest[];
         for (const n of [ ...Array(num).keys() ]) {
             history.push({
+                id: n,
                 title: `ランダムクエスト${n}番`,
                 desc: `randomly generated quest No.${n}`,
                 exp: 10 + Math.floor(Math.random() * 20),
