@@ -1,7 +1,7 @@
 <template lang='pug'>
 // ref: https://codepen.io/egorava/pen/wGmmJW
 .canvas-wrap
-    canvas#canvas(:width='cubeSize' :height='cubeSize' ref='canvas' v-resize='resized')
+    canvas#canvas(:width='planeSize' :height='planeSize' ref='canvas' v-resize='resized')
 </template>
 
 <script lang='ts'>
@@ -15,7 +15,7 @@ export default class ScoreMater extends Vue {
 
     public radius = 0;
     protected size = { width: 0, height: 0 };
-    protected cubeSize = 0;
+    protected planeSize = 0;
     protected percentage: number = 0;
     protected isDrawing = false;
 
@@ -23,10 +23,10 @@ export default class ScoreMater extends Vue {
         await aswait(100);
         this.size.width = this.$el.clientWidth;
         this.size.height = this.$el.clientHeight;
-        this.cubeSize = Math.min(this.size.width, this.size.height);
-        this.radius = this.cubeSize / 2.2;
+        this.planeSize = Math.min(this.size.width, this.size.height);
+        this.radius = this.planeSize / 2.2;
         await aswait(100);
-        if(!this.isDrawing) {
+        if (!this.isDrawing) {
             this.draw();
         }
     }
