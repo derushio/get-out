@@ -68,13 +68,13 @@ export function getCostumeByExp(exp: number) {
         }
 
         case (2): {
-            costume.sunglasses = true;
             costume.mask = true;
+            costume.earphone = true;
             break;
         }
 
         case (3): {
-            costume.mask = true;
+            costume.earphone = true;
             break;
         }
 
