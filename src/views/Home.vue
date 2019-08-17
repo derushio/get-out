@@ -6,7 +6,7 @@ v-layout#Home(fill-height column v-resize='resized')
                 //- アバター ＋ レベル情報
                 score-meter(radius='180' percent='82')
             v-flex.fruid(xs1)
-                h1.text-center Lv.25
+                h2.text-center Lv.25
             v-responsive(:height='300')
                 v-tabs(v-model='tab' background-color='primary' dark grow centered show-arrows)
                     v-tabs-slider
