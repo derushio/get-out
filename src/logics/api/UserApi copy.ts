@@ -4,7 +4,7 @@ import User from '@/models/entities/User';
 export default class UserApi {
     public static indexName = 'user';
 
-    public static async getUser(id: number) {
+    public static async getUser() {
         const user = LocalStorage.load(this.indexName) as User;
         return user;
     }

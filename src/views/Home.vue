@@ -1,29 +1,28 @@
 <template lang='pug'>
 v-layout#Home(fill-height column v-resize='redraw')
     .main-pane
-        v-layout.full-height(column)
+        v-layout.full-height(v-if='user' column)
             v-flex.xs-10
                 //- アバター ＋ レベル情報
                 v-layout.full-height(column)
                     v-flex.relative
                         score-meter(radius='90' percent='82')
-                        v-img.absolute.avator(:src='require("@/assets/imgs/avator/level1.png")' contain)
-                    v-btn(@click='generateAndViewTestData()') ランダムデータ生成
+                        v-img.absolute.avator(:src='avators[getLevelByExp(user.exp)]' contain)
                     h2.text-center Lv.25
                     v-btn(@click='generateAndViewTestData') ランダムデータ生成
 
             .score
-                v-tabs(v-model='tab' background-color='primary' dark grow centered show-arrows)
+                v-tabs(v-model='tab' @change='setTimeout(redraw, 100)' background-color='primary' dark grow centered show-arrows)
                     v-tabs-slider
                     v-tab スコア
                     v-tab クエスト履歴
                 v-tabs-items(v-model='tab')
                     v-tab-item.full-height
                         score-history(ref='scoreHistory' :height='300 - 48' :scoreArray='scores')
-                    v-tab-item.full-height
+                    v-tab-item.full-height.quest-history
                         v-card.history-item.my-3(v-for='quest, i in history' :key='i')
                             v-card-text
-                                v-row.px-4(justify='left' align='center')
+                                v-row.px-4(justify='start' align='center')
                                     span.d-block.title.mr-4
                                         span {{ quest.exp }}
                                         span.exp exp
@@ -42,6 +41,8 @@ import ScoreMeter from '@/components/graph/ScoreMeter.vue';
 import HistoryApi from '@/logics/api/HistoryApi';
 import Quest from '@/models/entities/Quest';
 import moment from 'moment';
+import User, { avators, getLevelByExp } from '../models/entities/User';
+import UserApi from '../logics/api/UserApi copy';
 
 @Component({
     components: {
@@ -55,6 +56,15 @@ export default class Home extends Vue {
     protected tab = 0;
     protected scores = [0, 0, 0, 0, 0, 0, 0];
     protected history = [] as Quest[];
+    protected avators = avators;
+    protected user = null as null | User;
+    protected getLevelByExp = getLevelByExp;
+
+    protected setTimeout = (a: () => any, b: number) => setTimeout(a, b);
+
+    protected async mounted() {
+        this.user = await UserApi.getUser();
+    }
 
     protected redraw() {
         const scoreHistory = this.$refs.scoreHistory as Vue | undefined;
@@ -93,11 +103,15 @@ html
         .score
             height: 300px; min-height: 300px; max-height: 300px;
 
-        .history-item
-            max-width: 400px;
-            margin-left: auto; margin-right: auto;
+        .v-tabs-items
+            overflow: auto;
+            height: calc(300px - 48px);
 
-            .exp
-                margin-left: 0.15em;
-                font-size: 0.3em;
+            .history-item
+                max-width: 400px;
+                margin-left: auto; margin-right: auto;
+
+                .exp
+                    margin-left: 0.15em;
+                    font-size: 0.3em;
 </style>

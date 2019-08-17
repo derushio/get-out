@@ -8,6 +8,14 @@ export default interface User {
     exp: number;
 }
 
+export const avators = {
+    1: require('@/assets/imgs/avator/level1.png'),
+    2: require('@/assets/imgs/avator/level2.png'),
+    3: require('@/assets/imgs/avator/level3.png'),
+    4: require('@/assets/imgs/avator/level4.png'),
+    5: require('@/assets/imgs/avator/level5.png'),
+};
+
 export function getLevelByExp(exp: number) {
     let level = 0;
     if (1000 > exp) {
