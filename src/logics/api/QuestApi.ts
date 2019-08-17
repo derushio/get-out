@@ -110,7 +110,7 @@ export default class QuestApi {
     }
 
     public static getAvailableQuests() {
-        const doneQuests = LocalStorage.load(this.indexName) as Quest[];
+        const doneQuests = LocalStorage.load(this.indexName) as Quest[] || [];
         const allQuests = this.questData;
 
         const diffQuest = allQuests.filter((doneQuest) => {
