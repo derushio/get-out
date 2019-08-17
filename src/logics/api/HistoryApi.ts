@@ -11,13 +11,18 @@ export default class HistoryApi {
         const history = [] as Quest[];
         for (const n of Array(num)) {
             history.push({
+                id: n,
                 title: `ran_quest_${n}`,
                 desc: `randomly generated quest No.${n}`,
                 exp: 10 + Math.floor(Math.random() * 20),
+                level: 3,
+                // TODO: これはダミーデータ
                 clearTime: RandomUtil.rand(moment().subtract('day', 12).unix(), moment().unix()) * 1000,
+                // tslint:disable-next-line: max-line-length
+                src: 'https://images.unsplash.com/photo-1484813047368-3a2883981427?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+                // TODO: これはダミーデータ
             });
         }
-        console.log(history);
         LocalStorage.save(this.indexName, history);
     }
 
@@ -26,7 +31,7 @@ export default class HistoryApi {
         return history;
     }
 
-    public static async addQuest(quest: Quest) {
+    public static async addFinishedQuestToDatabase(quest: Quest) {
         const history = await this.getHistory();
         history.push(quest);
         // TODO: ソートしたい
