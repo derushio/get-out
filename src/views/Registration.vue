@@ -17,7 +17,7 @@ v-layout#Registration(fill-height column)
 
             v-stepper-items.full-height
                 v-stepper-content.full-height(:step='1')
-                    p こんにちわ、新しい自分を見つけるお手伝いをさせていただきます
+                    p こんにちは、新しい自分を見つけるお手伝いをさせていただきます
                     p まずは...
                     h3.mb-3 あなたについて教えてください
                     v-form
