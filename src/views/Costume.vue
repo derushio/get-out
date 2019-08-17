@@ -37,6 +37,10 @@ export default class CostumeVue extends Vue {
 
     protected async mounted() {
         this.user = await UserApi.getUser();
+        if (!this.user) {
+            return;
+        }
+
         this.costume = getCostumeByExp(this.user.exp);
     }
 }

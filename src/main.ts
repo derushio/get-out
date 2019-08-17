@@ -9,16 +9,22 @@ import store from '@/store';
 import UserApi from './logics/api/UserApi';
 
 Vue.config.productionTip = false;
-new Vue({
+const app = new Vue({
     vuetify,
     router,
     store,
     render: (h: any) => h(App),
 } as any).$mount('#app');
 
-async function checkUser() {
-    if ((await UserApi.getUser()) == null) {
-        router.push({ name: 'Registration' });
+router.beforeEach(async (to, from, next) => {
+    if (to.name !== 'Registration') {
+        // check user
+        if ((await UserApi.getUser()) == null) {
+            await app.$vdialog.alert('ユーザーがありません');
+            next({ name: 'Registration' });
+            return;
+        }
     }
-}
-checkUser();
+
+    next();
+});
