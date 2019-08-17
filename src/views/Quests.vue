@@ -57,7 +57,7 @@ export default class Quests extends Vue {
         const quest = this.quests[i];
         await this.$vdialog.alert({ title: 'Result', message: `EXP GET!!<br />${quest.exp}` });
         await QuestApi.transferQuestsToHistory(quest.id);
-        this.updateQuest();   
+        this.updateQuest();
     }
     protected async openDetailDialog(i: number) {
         const quest = this.quests[i];
@@ -86,4 +86,8 @@ html
             border-radius 15px
         .relative
             font-weight bold
+        .activeTransition-enter-active, .activeTransition-leave-active
+            transition opacity .5s
+        .activeTransition-enter, .activeTransition-leave-to
+            opacity 0
 </style>
