@@ -10,16 +10,17 @@ v-layout#Quests(fill-height column)
                     max-width='500'
                     max-height='300')
         v-flex(xs12 v-else)
-            v-card.elavation-20.mb-3.px-3.py-1(v-for='quest, i in quests' :key='i' raised)
-                v-card-title.white--text.relative.pa-0(class='align-end fill-height')
-                    v-responsive(:aspect-ratio='4/2')
-                        v-img.absolute.quest-img(:src='quest.src' :aspect-ratio='4/2' @click='openDetailDialog(i)')
-                        .relative()
-                            span(v-for='char in 11' :key='char') {{ quest.title[char-1] }}
-                            span(v-if='quest.title.length>11') ...
-                v-card-text
-                    v-btn(@click='openDetailDialog(i)') DETAIL
-                    v-btn(@click='openClearDialog(i)') CLEAR
+            transition-group(name ='activeTransition')
+                v-card.elavation-20.mb-3.px-3.py-1(v-for='quest, i in quests' :key='i' raised)
+                    v-card-title.white--text.relative.pa-0(class='align-end fill-height')
+                        v-responsive(:aspect-ratio='4/2')
+                            v-img.absolute.quest-img(:src='quest.src' :aspect-ratio='4/2' @click='openDetailDialog(i)')
+                            .relative()
+                                span(v-for='char in 11' :key='char') {{ quest.title[char-1] }}
+                                span(v-if='quest.title.length>11') ...
+                    v-card-text
+                        v-btn(@click='openDetailDialog(i)') DETAIL
+                        v-btn(@click='openClearDialog(i)') CLEAR
 </template>
 
 <script lang='ts'>
@@ -57,7 +58,7 @@ export default class Quests extends Vue {
         const quest = this.quests[i];
         await this.$vdialog.alert({ title: 'Result', message: `EXP GET!!<br />${quest.exp}` });
         await QuestApi.transferQuestsToHistory(quest.id);
-        this.updateQuest();   
+        this.updateQuest();
     }
     protected async openDetailDialog(i: number) {
         const quest = this.quests[i];
@@ -86,4 +87,8 @@ html
             border-radius 15px
         .relative
             font-weight bold
+        .activeTransition-enter-active, .activeTransition-leave-active
+            transition opacity .5s
+        .activeTransition-enter, .activeTransition-leave-to
+            opacity 0
 </style>
