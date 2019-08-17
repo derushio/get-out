@@ -25,7 +25,8 @@ v-layout#Registration(fill-height column)
                             v-col(cols='12' md='4')
                                 v-text-field(v-model='name' label='氏名' required='')
                             v-col(cols='12' md='4')
-                                v-text-field(v-model='gender' label='性別' required='')
+                                // v-text-field(v-model='gender' label='性別' required='')
+                                v-select(v-model='gender' :items='genderItems' label='性別') 
                             v-col(cols='12' md='4')
                                 v-text-field(v-model='age' label='年齢' required='')
                     v-row(justify='end')
@@ -89,6 +90,11 @@ export default class Registration extends Vue {
             '三ヶ月',
             '半年',
             '一年',
+    ];
+    protected genderItems = [
+        '男性',
+        '女性',
+        'ひみつ'
     ];
 
     protected initialLevel = 1;
