@@ -17,7 +17,6 @@ export default class HistoryApi {
                 clearTime: RandomUtil.rand(moment().subtract('day', 12).unix(), moment().unix()) * 1000,
             });
         }
-        console.log(history);
         LocalStorage.save(this.indexName, history);
     }
 
@@ -26,7 +25,7 @@ export default class HistoryApi {
         return history;
     }
 
-    public static async addQuest(quest: Quest) {
+    public static async addFinishedQuestToDatabase(quest: Quest) {
         const history = await this.getHistory();
         history.push(quest);
         // TODO: ソートしたい
