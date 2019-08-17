@@ -13,9 +13,14 @@ export default class HistoryApi {
         const history = await this.getHistory();
         history.push(quest);
         // TODO: ソートしたい
-
+        history.sort((a, b) => {
+            if (a.clearTime < b.clearTime) {
+                return -1;
+            } else if (a.clearTime > b.clearTime) {
+                return 1;
+            }
+            return 0;
+        });
         LocalStorage.save(this.indexName, history);
     }
-
-    protected constructor() {}
 }
