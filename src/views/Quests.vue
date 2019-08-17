@@ -2,7 +2,14 @@
 v-layout#Quests(fill-height column)
     .main-pane
         h2.mb-3 クエストリスト
-        v-flex(xs12)
+        v-flex(v-if='isCompleted')
+            v-row(align='center' justify='center')
+                v-img(src='https://4.bp.blogspot.com/-x566IiNCuRo/WFo_JyhLT1I/AAAAAAABAkE/qd8FsA2e2gIQYk8I2T1Uj-wyrT0xYlcJACLcB/s800/message_syuryou_omedetou.png'
+                    aspect-ratio='1'
+                    class='lighten-2'
+                    max-width='500'
+                    max-height='300')
+        v-flex(xs12 v-else)
             v-card.elavation-20.mb-3.px-3.py-1(v-for='quest, i in quests' :key='i' raised)
                 v-card-title.white--text.relative.pa-0(class='align-end fill-height')
                     v-responsive(:aspect-ratio='4/2')
@@ -17,24 +24,40 @@ v-layout#Quests(fill-height column)
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
+import Quest from '@/models/entities/Quest';
+import QuestApi from '@/logics/api/QuestApi';
+import UserApi from '@/logics/api/UserApi';
+import User from '@/models/entities/User';
+import { getLevelByExp } from '@/models/entities/User';
 
 @Component
 export default class Quests extends Vue {
     protected dialog: boolean = false;
-    protected quests = [
-        // tslint:disable-next-line max-line-length
-        {title: 'コンビニに行こう', level: 1, src: 'https://images.unsplash.com/photo-1484813047368-3a2883981427?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60', exp: 100},
-        // tslint:disable-next-line max-line-length
-        {title: 'イヤホンを外してコンビニに行こう', level: 2, src: 'https://images.unsplash.com/photo-1529602266431-5e205a27eb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60', exp: 1000},
-        // tslint:disable-next-line max-line-length
-        {title: 'マスクを外してコンビニに行こう', level: 3, src: 'https://images.unsplash.com/photo-1564933031273-7ed87369d6f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60', exp: 2000},
-        // tslint:disable-next-line max-line-length
-        {title: 'サングラスを外してコンビニに行こう', level: 3, src: 'https://images.unsplash.com/photo-1505554898845-050c97a90ad6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60', exp: 4000},
-    ];
+    protected quests =  [] as Quest[];
+    protected isCompleted = false;
+
+    protected async updateQuest() {
+        const user = await UserApi.getUser(0); // 0でいいのかな？
+        if(!user) {
+            throw new Error('No User Found');
+        }
+        const userExp = user.exp;
+        this.quests = await QuestApi.getAvailableQuestsByLevel(getLevelByExp(userExp));
+        if (this.quests.length === 0) {
+            this.isCompleted = true;
+        }
+    }
+    
+
+    protected async mounted() {
+        this.updateQuest();
+    }
 
     protected async openClearDialog(i: number) {
         const quest = this.quests[i];
         await this.$vdialog.alert({ title: 'Result', message: `EXP GET!!<br />${quest.exp}` });
+        await QuestApi.transferQuestsToHistory(quest.id);
+        this.updateQuest();   
     }
     protected async openDetailDialog(i: number) {
         const quest = this.quests[i];

@@ -2,21 +2,23 @@ import Costume from '@/models/entities/Costume';
 
 export default interface User {
     name: string;
+    gender: string;
+    age: string;
+
     exp: number;
 }
 
 export function getLevelByExp(exp: number) {
-    let level = 1;
-    if (1000 < exp) {
+    let level = 0;
+    if (1000 > exp) {
+        level = 1;
+    } else if (2000 > exp) {
         level = 2;
-    } else if (2000 < exp) {
+    } else if (3000 > exp) {
         level = 3;
-    } else if (3000 < exp) {
+    } else if (4000 > exp) {
         level = 4;
-    } else if (4000 < exp) {
-        level = 5;
     }
-
     return level;
 }
 
