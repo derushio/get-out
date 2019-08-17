@@ -10,16 +10,20 @@ v-layout#Quests(fill-height column)
                     max-width='500'
                     max-height='300')
         v-flex(xs12 v-else)
-            v-card.elavation-20.mb-3.px-3.py-1(v-for='quest, i in quests' :key='i' raised)
-                v-card-title.white--text.relative.pa-0(class='align-end fill-height')
-                    v-responsive(:aspect-ratio='4/2')
-                        v-img.absolute.quest-img(:src='quest.src' :aspect-ratio='4/2' @click='openDetailDialog(i)')
-                        .relative()
-                            span(v-for='char in 11' :key='char') {{ quest.title[char-1] }}
-                            span(v-if='quest.title.length>11') ...
-                v-card-text
-                    v-btn(@click='openDetailDialog(i)') DETAIL
-                    v-btn(@click='openClearDialog(i)') CLEAR
+            v-col(v-for='quest, i in quests' :key='i')
+                v-card
+                    v-list-item(three-line='')
+                        v-list-item-content
+                            .overline.mb-4 Level{{ quest.level }}
+                            v-list-item-title.headline.mb-1 {{ quest.title }} 
+                            v-list-item-subtitle {{ quest.desc }}
+                        v-list-item-avatar(tile='', size='80', color='grey')
+                            v-img(:src='quest.src' @click='openDetailDialog(i)')      
+                    v-card-actions
+                        v-spacer
+                        v-btn(text color='orange' @click='openClearDialog(i)') CLEAR
+                        v-btn(icon @click='openDetailDialog(i)')
+                            v-icon info
 </template>
 
 <script lang='ts'>
@@ -37,7 +41,7 @@ export default class Quests extends Vue {
     protected isCompleted = false;
 
     protected async updateQuest() {
-        const user = await UserApi.getUser(0); // 0でいいのかな？
+        const user = await UserApi.getUser(); // 0でいいのかな？
         if(!user) {
             throw new Error('No User Found');
         }
@@ -77,15 +81,15 @@ html
     .main-pane
         main-pane(600px);
 
-        .quest-img
-            width: 100%; height: 100%;
-            top: 0; left: 0;
-            border-radius 15px
-        .elavation-20
-            margin 0 3%
-            border-radius 15px
-        .relative
-            font-weight bold
+        // .quest-img
+        //     width: 100%; height: 100%;
+        //     top: 0; left: 0;
+        //     border-radius 15px
+        // .elavation-20
+        //     margin 0 3%
+        //     border-radius 15px
+        // .relative
+        //     font-weight bold
         .activeTransition-enter-active, .activeTransition-leave-active
             transition opacity .5s
         .activeTransition-enter, .activeTransition-leave-to
