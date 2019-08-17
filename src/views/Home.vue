@@ -4,6 +4,7 @@ v-layout#Home(fill-height column v-resize='resized')
         v-layout.full-height(column)
             v-flex.red(xs7)
                 //- アバター ＋ レベル情報
+                score-meter
             v-responsive(:height='300')
                 v-tabs(v-model='tab' background-color='primary' dark grow centered show-arrows)
                     v-tabs-slider
@@ -20,10 +21,12 @@ v-layout#Home(fill-height column v-resize='resized')
 import { Component, Vue } from 'vue-property-decorator';
 import ScoreHistory from '@/components/graph/ScoreHistory.vue';
 import { aswait } from 'instant-vuetify-overlays/src/utils/AsyncTimeout';
+import ScoreMeter from '@/components/graph/ScoreMeter.vue';
 
 @Component({
     components: {
         ScoreHistory,
+        ScoreMeter
     },
 })
 export default class Home extends Vue {
