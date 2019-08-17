@@ -17,6 +17,7 @@ export default class ScoreMater extends Vue {
     protected size = { width: 0, height: 0 };
     protected cubeSize = 0;
     protected percentage: number = 0;
+    protected isDrawing = false;
 
     protected async resized() {
         await aswait(100);
@@ -25,7 +26,9 @@ export default class ScoreMater extends Vue {
         this.cubeSize = Math.min(this.size.width, this.size.height);
         this.radius = this.cubeSize / 2.2;
         await aswait(100);
-        this.draw();
+        if(!this.isDrawing) {
+            this.draw();
+        }
     }
 
     protected draw() {
@@ -42,6 +45,7 @@ export default class ScoreMater extends Vue {
         c!.lineCap = 'round';
         let degrees = 0;
         const acrInterval = setInterval(() => {
+            this.isDrawing = true;
             degrees += 1;
             c!.clearRect( 0, 0, can.width, can.height );
             percentage = degrees / onepercentage;
@@ -66,6 +70,7 @@ export default class ScoreMater extends Vue {
             c!.stroke();
             if ( degrees >= result ) {
                 clearInterval(acrInterval);
+                this.isDrawing = false;
             }
         }, fps);
     }
