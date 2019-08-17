@@ -44,8 +44,8 @@ export function getExpPercent(exp: number) {
     if (nextExp == null) {
         return 0;
     }
-    const dExp = exp - prevExp;
 
+    const dExp = exp - prevExp;
     const percent = (dExp / (nextExp - prevExp)) * 100;
     return percent;
 }
