@@ -1,5 +1,6 @@
 import LocalStorage from '@/logics/db/LocalStorage';
 import Quest from '@/models/entities/Quest';
+import UserApi from '@/logics/api/UserApi';
 
 export default class QuestApi {
     public static indexName = 'history';
@@ -135,6 +136,15 @@ export default class QuestApi {
         return result;
     }
 
+    public static async giveExpToUser(exp: number) {
+        const user = await UserApi.getUser(0); // 0でいいのかな？
+        if (!user) {
+            throw new Error('No User Found');
+        }
+        user.exp += exp;
+        await UserApi.putUser(user);
+    }
+
     public static async transferQuestsToHistory(questId: number) {
         const doneQuests = LocalStorage.load(this.indexName) as Quest[] || [];
         const allQuests = this.questData;
@@ -143,6 +153,7 @@ export default class QuestApi {
             return e.id === questId;
         })[0];
 
+        this.giveExpToUser(deletingQuest.exp);
         doneQuests.push(deletingQuest);
         LocalStorage.save(this.indexName, doneQuests);
     }
