@@ -9,7 +9,7 @@ export default class HistoryApi {
 
     public static async generateRandomData(num: number) {
         const history = [] as Quest[];
-        for (const n of Array(num)) {
+        for (const n in Array(num)) {
             history.push({
                 title: `ran_quest_${n}`,
                 desc: `randomly generated quest No.${n}`,
@@ -17,7 +17,6 @@ export default class HistoryApi {
                 clearTime: RandomUtil.rand(moment().subtract('day', 12).unix(), moment().unix()) * 1000,
             });
         }
-        console.log(history);
         LocalStorage.save(this.indexName, history);
     }
 
