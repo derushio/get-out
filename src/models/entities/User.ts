@@ -39,13 +39,14 @@ export function getLevelByExp(exp: number) {
 
 export function getExpPercent(exp: number) {
     const level = getLevelByExp(exp);
-    const dExp = levelExp[level] - exp;
-    const nextExp = levelExp[level + 1];
+    const prevExp = levelExp[level - 1];
+    const nextExp = levelExp[level];
     if (nextExp == null) {
         return 0;
     }
+    const dExp = exp - prevExp;
 
-    const percent = (dExp / nextExp) * 100;
+    const percent = (dExp / (nextExp - prevExp)) * 100;
     return percent;
 }
 
