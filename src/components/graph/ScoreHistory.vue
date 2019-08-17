@@ -15,16 +15,6 @@ export default class ScoreHistory extends Vue {
     @Prop({ default: () => [100, 90, 60, 70, 50, 30, 40] })
     public scoreArray?: number[];
 
-    protected hisData = {
-        labels: this.label,
-        datasets: [{
-            label: 'score',
-            borderColor: '#0000ff',
-            data: this.scoreArray,
-            fill: false,
-        }],
-    };
-
     protected hisOption = {
         title: {
             display: true,
@@ -40,7 +30,16 @@ export default class ScoreHistory extends Vue {
     protected mounted() {
         // ref: https://minmin-21.hatenablog.com/entry/2019/05/03/113903
         this.$on('renderChart', () => {
-            (this as any).renderChart(this.hisData, this.hisOption);
+            const hisData = {
+                labels: this.label,
+                datasets: [{
+                    label: 'score',
+                    borderColor: '#0000ff',
+                    data: this.scoreArray,
+                    fill: false,
+                }],
+            };
+            (this as any).renderChart(hisData, this.hisOption);
         });
         this.$emit('renderChart');
     }

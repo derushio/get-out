@@ -2,9 +2,24 @@ import LocalStorage from '@/logics/db/LocalStorage';
 import Quest from '@/models/entities/Quest';
 import moment from 'moment';
 import { DateRange } from 'moment-range';
+import RandomUtil from '@/utils/RandomUtil';
 
 export default class HistoryApi {
-    public static indexName = 'histrory';
+    public static indexName = 'history';
+
+    public static async generateRandomData(num: number) {
+        const history = [] as Quest[];
+        for (const n of Array(num)) {
+            history.push({
+                title: `ran_quest_${n}`,
+                desc: `randomly generated quest No.${n}`,
+                exp: 10 + Math.floor(Math.random() * 20),
+                clearTime: RandomUtil.rand(moment().subtract('day', 12).unix(), moment().unix()) * 1000,
+            });
+        }
+        console.log(history);
+        LocalStorage.save(this.indexName, history);
+    }
 
     public static async getHistory() {
         const history = LocalStorage.load(this.indexName) as Quest[];

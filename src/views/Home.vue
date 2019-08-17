@@ -1,11 +1,12 @@
 <template lang='pug'>
-v-layout#Home(fill-height column v-resize='resized')
+v-layout#Home(fill-height column v-resize='redraw')
     .main-pane
         v-layout.full-height(column)
             v-flex
                 //- アバター ＋ レベル情報
                 score-meter(radius='180' percent='82')
-                //h2.text-center Lv.25
+                h2.text-center Lv.25
+                v-btn(@click='generateAndViewTestData' ) データ生成
 
             .score
                 v-tabs(v-model='tab' background-color='primary' dark grow centered show-arrows)
@@ -14,7 +15,7 @@ v-layout#Home(fill-height column v-resize='resized')
                     v-tab クエスト履歴
                 v-tabs-items(v-model='tab')
                     v-tab-item.full-height
-                        score-history(ref='scoreHistory' :height='300 - 48')
+                        score-history(ref='scoreHistory' :height='300 - 48' :scoreArray='scores')
                     v-tab-item.full-height
 
 </template>
@@ -25,6 +26,8 @@ import ScoreHistory from '@/components/graph/ScoreHistory.vue';
 import { aswait } from 'instant-vuetify-overlays/src/utils/AsyncTimeout';
 import ScoreMeter from '@/components/graph/ScoreMeter.vue';
 
+import HistoryApi from '@/logics/api/HistoryApi';
+
 @Component({
     components: {
         ScoreHistory,
@@ -33,14 +36,21 @@ import ScoreMeter from '@/components/graph/ScoreMeter.vue';
 })
 export default class Home extends Vue {
     protected tab = 0;
+    protected scores = [0, 0, 0, 0, 0, 0, 0];
 
-    protected resized() {
+    protected redraw() {
         const scoreHistory = this.$refs.scoreHistory as Vue | undefined;
         if (!scoreHistory) {
             return;
         }
 
         scoreHistory.$emit('renderChart');
+    }
+
+    protected async generateAndViewTestData() {
+        HistoryApi.generateRandomData(100);
+        this.scores = await HistoryApi.statisticsWeeklyScore();
+        this.redraw();
     }
 }
 </script>
