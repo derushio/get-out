@@ -2,7 +2,14 @@
 v-layout#Quests(fill-height column)
     .main-pane
         h2.mb-3 クエストリスト
-        v-flex(xs12)
+        v-flex(v-if='isCompleted')
+            v-row(align='center' justify='center')
+                v-img(src='https://4.bp.blogspot.com/-x566IiNCuRo/WFo_JyhLT1I/AAAAAAABAkE/qd8FsA2e2gIQYk8I2T1Uj-wyrT0xYlcJACLcB/s800/message_syuryou_omedetou.png'
+                    aspect-ratio='1'
+                    class='lighten-2'
+                    max-width='500'
+                    max-height='300')
+        v-flex(xs12 v-else)
             v-card.elavation-20.mb-3.px-3.py-1(v-for='quest, i in quests' :key='i' raised)
                 v-card-title.white--text.relative.pa-0(class='align-end fill-height')
                     v-responsive(:aspect-ratio='4/2')
@@ -27,6 +34,7 @@ import { getLevelByExp } from '@/models/entities/User';
 export default class Quests extends Vue {
     protected dialog: boolean = false;
     protected quests =  [] as Quest[];
+    protected isCompleted = false;
 
     protected async updateQuest() {
         const user = await UserApi.getUser(0); // 0でいいのかな？
@@ -35,7 +43,11 @@ export default class Quests extends Vue {
         }
         const userExp = user.exp;
         this.quests = await QuestApi.getAvailableQuestsByLevel(getLevelByExp(userExp));
+        if (this.quests.length === 0) {
+            this.isCompleted = true;
+        }
     }
+    
 
     protected async mounted() {
         this.updateQuest();
