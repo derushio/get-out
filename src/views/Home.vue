@@ -8,7 +8,7 @@ v-layout#Home(fill-height column v-resize='redraw')
                     v-flex.relative
                         score-meter(radius='90' percent='82')
                         v-img.absolute.avator(:src='avators[getLevelByExp(user.exp)]' contain)
-                    h2.text-center Lv.25
+                    h2.text-center Lv.{{getLevelByExp(user.exp)}}
                     v-btn(@click='generateAndViewTestData') ランダムデータ生成
 
             .score
