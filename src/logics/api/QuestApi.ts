@@ -336,7 +336,7 @@ export default class QuestApi {
     }
 
     public static async giveExpToUser(exp: number) {
-        const user = await UserApi.getUser(0); // 0でいいのかな？
+        const user = await UserApi.getUser();
         if (!user) {
             throw new Error('No User Found');
         }
