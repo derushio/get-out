@@ -9,7 +9,7 @@ export default class ScoreHistory extends Vue {
     @Prop({ default: () => '直近7日間の獲得スコア' })
     public title?: string;
 
-    @Prop({ default: () => ['日', '月', '火', '水', '木', '金', '土', '日'] })
+    @Prop({ default: () => ['日', '月', '火', '水', '木', '金', '土'] })
     public label?: string[];
 
     @Prop({ default: () => [100, 90, 60, 70, 50, 30, 40] })

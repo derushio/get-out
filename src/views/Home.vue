@@ -6,7 +6,7 @@ v-layout#Home(fill-height column v-resize='redraw')
                 //- アバター ＋ レベル情報
                 v-layout.full-height(column)
                     v-flex.relative
-                        score-meter(radius='90' percent='82')
+                        score-meter(radius='90' :percent='getExpPercent(user.exp)')
                         v-img.absolute.avator(:src='avators[getLevelByExp(user.exp)]' contain)
                     h2.text-center Lv.{{getLevelByExp(user.exp)}}
                     v-btn(@click='generateAndViewTestData') ランダムデータ生成
@@ -41,7 +41,7 @@ import ScoreMeter from '@/components/graph/ScoreMeter.vue';
 import HistoryApi from '@/logics/api/HistoryApi';
 import Quest from '@/models/entities/Quest';
 import moment from 'moment';
-import User, { avators, getLevelByExp } from '../models/entities/User';
+import User, { avators, getLevelByExp, getExpPercent } from '../models/entities/User';
 import UserApi from '../logics/api/UserApi copy';
 
 @Component({
@@ -59,6 +59,7 @@ export default class Home extends Vue {
     protected avators = avators;
     protected user = null as null | User;
     protected getLevelByExp = getLevelByExp;
+    protected getExpPercent = getExpPercent;
 
     protected setTimeout = (a: () => any, b: number) => setTimeout(a, b);
 

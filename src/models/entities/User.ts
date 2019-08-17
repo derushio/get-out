@@ -16,18 +16,37 @@ export const avators = {
     5: require('@/assets/imgs/avator/level5.png'),
 };
 
+export const levelExp = {
+    1: 1000,
+    2: 2000,
+    3: 3000,
+    4: 4000,
+} as { [key: number]: number };
+
 export function getLevelByExp(exp: number) {
     let level = 0;
-    if (1000 > exp) {
+    if (levelExp[1] > exp) {
         level = 1;
-    } else if (2000 > exp) {
+    } else if (levelExp[2] > exp) {
         level = 2;
-    } else if (3000 > exp) {
+    } else if (levelExp[3] > exp) {
         level = 3;
-    } else if (4000 > exp) {
+    } else if (levelExp[4] > exp) {
         level = 4;
     }
     return level;
+}
+
+export function getExpPercent(exp: number) {
+    const level = getLevelByExp(exp);
+    const dExp = levelExp[level] - exp;
+    const nextExp = levelExp[level + 1];
+    if (nextExp == null) {
+        return 0;
+    }
+
+    const percent = (dExp / nextExp) * 100;
+    return percent;
 }
 
 export function getCostumeByExp(exp: number) {
