@@ -4,7 +4,7 @@ v-layout#Home(fill-height column v-resize='resized')
         v-layout.full-height(column)
             v-flex(xs6)
                 //- アバター ＋ レベル情報
-                score-meter(radius='180')
+                score-meter(radius='180' percent='82')
             v-flex.fruid(xs1)
                 h1.text-center Lv.25
             v-responsive(:height='300')
