@@ -26,7 +26,7 @@ import ScoreMeter from '@/components/graph/ScoreMeter.vue';
 @Component({
     components: {
         ScoreHistory,
-        ScoreMeter
+        ScoreMeter,
     },
 })
 export default class Home extends Vue {
