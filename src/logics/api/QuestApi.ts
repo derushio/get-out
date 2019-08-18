@@ -1,6 +1,7 @@
 import LocalStorage from '@/logics/db/LocalStorage';
 import Quest from '@/models/entities/Quest';
 import UserApi from '@/logics/api/UserApi';
+import moment from 'moment';
 
 export default class QuestApi {
     public static indexName = 'history';
@@ -352,7 +353,9 @@ export default class QuestApi {
             return e.id === questId;
         })[0];
 
+        deletingQuest.clearTime = moment().unix() * 1000;
         this.giveExpToUser(deletingQuest.exp);
+
         doneQuests.push(deletingQuest);
         LocalStorage.save(this.indexName, doneQuests);
     }
