@@ -18,7 +18,7 @@ v-app#app
 
     v-app-bar(app color='primary' dark height='54px')
         v-app-bar-nav-icon.nav-icon(@click.stop='drawer = !drawer')
-        v-toolbar-title {{ appName }}
+        v-toolbar-title {{$route.meta.title || 'GET OUT'}}
         v-spacer
 
         v-menu.hidden-xs-only
@@ -33,7 +33,6 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class App extends Vue {
-    public appName = process.env.APP_NAME;
     protected drawer = false;
 }
 </script>
