@@ -40,13 +40,13 @@ export default class HistoryApi {
     }
 
     public static async statisticsWeeklyLavel() {
-        return ['月', '火', '水', '木', '金', '土', '日'];
+        return ['日', '月', '火', '水', '木', '金', '土'];
     }
 
     public static async statisticsWeeklyScore() {
         const history = await this.getHistory();
         const weekly = [0, 0, 0, 0, 0, 0, 0];
-        const range = new DateRange(moment().add(-8, 'day'), moment().add(-1, 'day'));
+        const range = new DateRange(moment().add(-7, 'day'), moment().add(0, 'day'));
         for (const quest of history) {
             const day = moment(quest.clearTime);
             if (!range.contains(day)) {
