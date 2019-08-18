@@ -2,7 +2,7 @@
 v-layout#Home(fill-height column v-resize='redraw')
     .main-pane
         v-layout.full-height(v-if='user' column)
-            v-flex.xs-10
+            .account
                 //- アバター ＋ レベル情報
                 v-layout.full-height(column)
                     h2.text-center {{ user.name }}
@@ -105,6 +105,9 @@ html
 #Home
     .main-pane
         main-pane(600px);
+
+        .account
+            height: calc(100% - 300px);
 
         .avator
             top: 50%; left: 50%;
