@@ -43,7 +43,7 @@ import HistoryApi from '@/logics/api/HistoryApi';
 import Quest from '@/models/entities/Quest';
 import moment from 'moment';
 import User, { avators, getLevelByExp, getExpPercent } from '@/models/entities/User';
-import UserApi from '@/logics/api/UserApi copy';
+import UserApi from '@/logics/api/UserApi';
 
 @Component({
     components: {
