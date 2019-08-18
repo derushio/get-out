@@ -24,7 +24,7 @@ export const levelExp = {
 } as { [key: number]: number };
 
 export function getLevelByExp(exp: number) {
-    let level = 0;
+    let level;
     if (levelExp[1] > exp) {
         level = 1;
     } else if (levelExp[2] > exp) {
@@ -34,6 +34,8 @@ export function getLevelByExp(exp: number) {
     } else if (levelExp[4] > exp) {
         level = 4;
     }
+    level = 5;
+
     return level;
 }
 
