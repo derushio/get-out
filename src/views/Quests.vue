@@ -10,19 +10,20 @@ v-layout#Quests(fill-height column)
                     max-width='500'
                     max-height='300')
         v-flex(xs12 v-else)
-            v-col(v-for='quest, i in quests' :key='i')
-                v-card
-                    v-list-item(three-line='')
-                        v-list-item-content
-                            .overline.mb-4 Level{{ quest.level }}
-                            v-list-item-title.headline.mb-1 {{ quest.title }} 
-                            v-list-item-subtitle {{ quest.desc }} <br />獲得できる経験値: {{ quest.exp }}
-                        v-list-item-avatar(tile='', size='80', color='grey')
-                            v-img(:src='quest.src' @click='openDetailDialog(i)')
-                    v-card-actions
-                        v-spacer
-                        v-btn(text color='orange' @click='openClearDialog(i)') CLEAR
-                        v-btn.text-lowercase(icon small @click='openDetailDialog(i)') i
+            transition-group(name='activeTransition')
+                v-col(v-for='quest, i in quests' :key='quest.id')
+                    v-card
+                        v-list-item(three-line='')
+                            v-list-item-content
+                                .overline.mb-4 Level{{ quest.level }}
+                                v-list-item-title.headline.mb-1 {{ quest.title }} 
+                                v-list-item-subtitle {{ quest.desc }} <br />獲得できる経験値: {{ quest.exp }}
+                            v-list-item-avatar(tile='', size='80', color='grey')
+                                v-img(:src='quest.src' @click='openDetailDialog(i)')
+                        v-card-actions
+                            v-spacer
+                            v-btn(text color='orange' @click='openClearDialog(i)') CLEAR
+                            v-btn.text-lowercase(icon small @click='openDetailDialog(i)') i
 </template>
 
 <script lang='ts'>
@@ -90,7 +91,8 @@ html
         // .relative
         //     font-weight bold
         .activeTransition-enter-active, .activeTransition-leave-active
-            transition opacity .5s
+            transform translate(0px, 0px)
+            transition transform 400ms cubic-bezier(0, 0, 0.2, 1) 0ms
         .activeTransition-enter, .activeTransition-leave-to
-            opacity 0
+            transform translateX(-100vw) translateX(0px)
 </style>
