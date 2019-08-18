@@ -22,7 +22,7 @@ v-layout#Quests(fill-height column)
                     v-card-actions
                         v-spacer
                         v-btn(text color='orange' @click='openClearDialog(i)') CLEAR
-                        v-btn(icon small @click='openDetailDialog(i)')  ℹ️ 
+                        v-btn(icon small @click='openDetailDialog(i)') i
 </template>
 
 <script lang='ts'>
