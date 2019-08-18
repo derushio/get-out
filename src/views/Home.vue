@@ -67,6 +67,7 @@ export default class Home extends Vue {
     protected async mounted() {
         this.user = await UserApi.getUser();
         this.scores = await HistoryApi.statisticsWeeklyScore();
+        this.label = await HistoryApi.statisticsWeeklyLavel();
         this.history = await HistoryApi.getHistory();
         this.redraw();
     }
