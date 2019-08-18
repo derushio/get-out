@@ -18,7 +18,7 @@ v-layout#Quests(fill-height column)
                             v-list-item-title.headline.mb-1 {{ quest.title }} 
                             v-list-item-subtitle {{ quest.desc }} <br />獲得できる経験値: {{ quest.exp }}
                         v-list-item-avatar(tile='', size='80', color='grey')
-                            v-img(:src='quest.src' @click='openDetailDialog(i)')      
+                            v-img(:src='quest.src' @click='openDetailDialog(i)')
                     v-card-actions
                         v-spacer
                         v-btn(text color='orange' @click='openClearDialog(i)') CLEAR
@@ -40,8 +40,8 @@ export default class Quests extends Vue {
     protected isCompleted = false;
 
     protected async updateQuest() {
-        const user = await UserApi.getUser(); // 0でいいのかな？
-        if(!user) {
+        const user = await UserApi.getUser();
+        if (!user) {
             throw new Error('No User Found');
         }
         const userExp = user.exp;
