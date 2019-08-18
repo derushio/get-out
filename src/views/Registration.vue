@@ -26,7 +26,7 @@ v-layout#Registration(fill-height column)
                                 v-text-field(v-model='name' label='氏名' required='')
                             v-col(cols='12' md='4')
                                 // v-text-field(v-model='gender' label='性別' required='')
-                                v-select(v-model='gender' :items='genderItems' label='性別') 
+                                v-select(v-model='gender' :items='genderItems' label='性別')
                             v-col(cols='12' md='4')
                                 v-text-field(v-model='age' label='年齢' required='')
                     v-row(justify='end')
@@ -79,7 +79,7 @@ v-layout#Registration(fill-height column)
 import { Component, Vue } from 'vue-property-decorator';
 import getCostumeByExp, { getLevelByExp } from '@/models/entities/User';
 import User from '@/models/entities/User';
-import UserApi from '../logics/api/UserApi copy';
+import UserApi from '../logics/api/UserApi';
 
 @Component
 export default class Registration extends Vue {
@@ -110,10 +110,8 @@ export default class Registration extends Vue {
                 gender: this.gender,
                 age: this.age,
                 time_range: this.time_range,
-                exp: (this.initialLevel-1) * 1000,
+                exp: (this.initialLevel - 1) * 1000,
             } as User;
-
-            console.log(getLevelByExp(user.exp));
 
             await UserApi.putUser(user);
 

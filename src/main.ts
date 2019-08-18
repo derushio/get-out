@@ -8,6 +8,7 @@ import router from '@/router';
 import store from '@/store';
 import UserApi from './logics/api/UserApi';
 import { RawLocation } from 'vue-router';
+import KintoneApi from './logics/api/KintoneApi';
 
 Vue.config.productionTip = false;
 const app = new Vue({
@@ -35,3 +36,5 @@ router.beforeEach(async (to, from, next) => {
 });
 
 checkUser(router);
+
+// KintoneApi.postMessage(new Date(), '');

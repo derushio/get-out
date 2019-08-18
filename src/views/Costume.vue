@@ -23,7 +23,7 @@ v-layout#Costume(fill-height column)
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator';
 import User, { avators, getLevelByExp, getExpPercent, getCostumeByExp } from '@/models/entities/User';
-import UserApi from '@/logics/api/UserApi copy';
+import UserApi from '@/logics/api/UserApi';
 import Costume from '@/models/entities/Costume';
 
 @Component
