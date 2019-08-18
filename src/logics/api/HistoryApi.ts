@@ -58,6 +58,10 @@ export default class HistoryApi {
         return weekly;
     }
 
+    public static async deleteHistories(){
+        localStorage.removeItem('history');
+    }
+
     protected static sort(data: Quest[]){
         data.sort((a, b) => {
             if (a.clearTime < b.clearTime) {

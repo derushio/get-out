@@ -13,10 +13,12 @@ v-app#app
                 v-list-item-content: v-list-item-title コスチューム
             v-list-item(:to='{ name: "Quests" }' exact)
                 v-list-item-content: v-list-item-title クエストリスト
+            v-list-item(:to='{ name: "Developer" }' exact)
+                v-list-item-content: v-list-item-title 開発者ページ
 
     v-app-bar(app color='primary' dark height='54px')
         v-app-bar-nav-icon.nav-icon(@click.stop='drawer = !drawer')
-        v-toolbar-title {{ appName }}
+        v-toolbar-title {{$route.meta.title || 'GET OUT'}}
         v-spacer
 
         v-menu.hidden-xs-only
@@ -31,7 +33,6 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class App extends Vue {
-    public appName = process.env.APP_NAME;
     protected drawer = false;
 }
 </script>
