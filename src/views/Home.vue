@@ -50,6 +50,11 @@ import UserApi from '@/logics/api/UserApi copy';
         ScoreHistory,
         ScoreMeter,
     },
+    beforeRouteEnter: (to, from, next) => {
+        next((vm) => {
+            (vm as any).redraw();
+        });
+    },
 })
 export default class Home extends Vue {
     protected moment = moment;
@@ -61,6 +66,7 @@ export default class Home extends Vue {
     protected user = null as null | User;
     protected getLevelByExp = getLevelByExp;
     protected getExpPercent = getExpPercent;
+    protected hasUpdated = false;
 
     protected setTimeout = (a: () => any, b: number) => setTimeout(a, b);
 
@@ -71,19 +77,18 @@ export default class Home extends Vue {
         this.redraw();
     }
 
-    protected redraw() {
+    protected async redraw() {
         const scoreHistory = this.$refs.scoreHistory as Vue | undefined;
         if (!scoreHistory) {
             return;
         }
-
+        this.scores = await HistoryApi.statisticsWeeklyScore();
+        this.history = await HistoryApi.getHistory();
         scoreHistory.$emit('renderChart');
     }
 
     protected async generateAndViewTestData() {
         HistoryApi.generateRandomData(100);
-        this.scores = await HistoryApi.statisticsWeeklyScore();
-        this.history = await HistoryApi.getHistory();
         this.redraw();
     }
 }
