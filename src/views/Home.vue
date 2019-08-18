@@ -10,7 +10,6 @@ v-layout#Home(fill-height column v-resize='redraw')
                         score-meter(:percent='getExpPercent(user.exp)')
                         v-img.absolute.avator(:src='avators[getLevelByExp(user.exp)]' contain)
                     h3.text-center Lv.{{getLevelByExp(user.exp)}}
-                    v-btn(@click='generateAndViewTestData') ランダムデータ生成
 
             .score
                 v-tabs(v-model='tab' @change='setTimeout(redraw, 100)' background-color='primary' dark grow centered show-arrows)
