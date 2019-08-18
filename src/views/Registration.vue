@@ -94,7 +94,7 @@ export default class Registration extends Vue {
     protected genderItems = [
         '男性',
         '女性',
-        'ひみつ'
+        'ひみつ',
     ];
 
     protected initialLevel = 1;
