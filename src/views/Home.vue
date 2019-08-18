@@ -98,8 +98,8 @@ export default class Home extends Vue {
 @require '~@/assets/styles/entry/_view.styl';
 
 html
-    // scroll-view: true;
-    static-view: true;
+    scroll-view: true;
+    // static-view: true;
 
 #Home
     .main-pane
