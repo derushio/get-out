@@ -20,7 +20,7 @@ export default class QuestApi {
             id: 1,
             title: 'イヤホンを外してコンビニに行こう',
             desc: 'イヤホンを外してコンビニに行ってみよう！',
-            exp: 1000,
+            exp: 300,
             level: 2,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -30,7 +30,7 @@ export default class QuestApi {
             id: 2,
             title: 'マスクを外してコンビニに行こう',
             desc: 'マスクを外してコンビニに行ってみよう！',
-            exp: 2000,
+            exp: 300,
             level: 3,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -40,7 +40,7 @@ export default class QuestApi {
             id: 3,
             title: 'サングラスを外してコンビニに行こう',
             desc: '4',
-            exp: 4000,
+            exp: 300,
             level: 4,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -61,7 +61,7 @@ export default class QuestApi {
             id: 5,
             title: 'イヤホンを外して図書館に行こう',
             desc: 'イヤホンを外して近くの図書館に行ってみよう！',
-            exp: 1000,
+            exp: 200,
             level: 2,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -71,7 +71,7 @@ export default class QuestApi {
             id: 6,
             title: 'マスクを外して図書館に行こう',
             desc: 'マスクを外して図書館に行ってみよう！',
-            exp: 2000,
+            exp: 300,
             level: 3,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -81,7 +81,7 @@ export default class QuestApi {
             id: 7,
             title: 'サングラスを外して図書館に行こう',
             desc: 'サングラスを外して図書館に行ってみよう！',
-            exp: 4000,
+            exp: 300,
             level: 4,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -91,7 +91,7 @@ export default class QuestApi {
             id: 8,
             title: 'ドン・キホーテに行こう',
             desc: '変装して、近くのドン・キホーテに行ってみよう！',
-            exp: 300,
+            exp: 200,
             level: 1,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -111,7 +111,7 @@ export default class QuestApi {
             id: 10,
             title: 'マスクを外してドン・キホーテに行こう',
             desc: 'マスクを外してドン・キホーテに行ってみよう！',
-            exp: 2000,
+            exp: 200,
             level: 3,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -121,7 +121,7 @@ export default class QuestApi {
             id: 11,
             title: 'サングラスを外してドン・キホーテに行こう',
             desc: 'サングラスを外してドン・キホーテに行ってみよう！',
-            exp: 4000,
+            exp: 400,
             level: 4,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -141,7 +141,7 @@ export default class QuestApi {
             id: 13,
             title: 'イヤホンを外してマクドナルドに行こう',
             desc: 'イヤホンを外して近くのマクドナルドに行ってみよう！',
-            exp: 1000,
+            exp: 100,
             level: 2,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -151,7 +151,7 @@ export default class QuestApi {
             id: 14,
             title: 'マスクを外してマクドナルドに行こう',
             desc: 'マスクを外してマクドナルドに行ってみよう！',
-            exp: 2000,
+            exp: 500,
             level: 3,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -161,7 +161,7 @@ export default class QuestApi {
             id: 15,
             title: 'サングラスを外してマクドナルドに行こう',
             desc: 'サングラスを外してマクドナルドに行ってみよう！',
-            exp: 4000,
+            exp: 300,
             level: 4,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -181,7 +181,7 @@ export default class QuestApi {
             id: 17,
             title: 'イヤホンを外してサーティワンに行こう',
             desc: 'イヤホンを外して近くのサーティワンに行ってみよう！',
-            exp: 1000,
+            exp: 300,
             level: 2,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -191,7 +191,7 @@ export default class QuestApi {
             id: 18,
             title: 'マスクを外してサーティワンに行こう',
             desc: 'マスクを外してサーティワンに行ってみよう！',
-            exp: 2000,
+            exp: 270,
             level: 3,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -201,7 +201,7 @@ export default class QuestApi {
             id: 19,
             title: 'サングラスを外してサーティワンに行こう',
             desc: 'サングラスを外してサーティワンに行ってみよう！',
-            exp: 4000,
+            exp: 400,
             level: 4,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -221,7 +221,7 @@ export default class QuestApi {
             id: 21,
             title: 'イヤホンを外して本屋に行こう',
             desc: 'イヤホンを外して近くの本屋に行ってみよう！',
-            exp: 1000,
+            exp: 600,
             level: 2,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -231,7 +231,7 @@ export default class QuestApi {
             id: 22,
             title: 'マスクを外して本屋に行こう',
             desc: 'マスクを外して本屋に行ってみよう！',
-            exp: 2000,
+            exp: 200,
             level: 3,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -241,7 +241,7 @@ export default class QuestApi {
             id: 23,
             title: 'サングラスを外して本屋に行こう',
             desc: 'サングラスを外して本屋に行ってみよう！',
-            exp: 4000,
+            exp: 400,
             level: 4,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -261,7 +261,7 @@ export default class QuestApi {
             id: 25,
             title: 'イヤホンを外して学校に行こう',
             desc: 'イヤホンを外して近くの学校に行ってみよう！',
-            exp: 1000,
+            exp: 500,
             level: 2,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -271,7 +271,7 @@ export default class QuestApi {
             id: 26,
             title: 'マスクを外して学校に行こう',
             desc: 'マスクを外して学校に行ってみよう！',
-            exp: 2000,
+            exp: 500,
             level: 3,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
@@ -281,7 +281,7 @@ export default class QuestApi {
             id: 27,
             title: 'サングラスを外して学校に行こう',
             desc: 'サングラスを外して学校に行ってみよう！',
-            exp: 4000,
+            exp: 500,
             level: 4,
             clearTime: 5423543532,
             // tslint:disable-next-line: max-line-length
