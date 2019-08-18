@@ -61,6 +61,7 @@ export default class Home extends Vue {
     protected user = null as null | User;
     protected getLevelByExp = getLevelByExp;
     protected getExpPercent = getExpPercent;
+    protected label = [] as string[];
 
     protected setTimeout = (a: () => any, b: number) => setTimeout(a, b);
 

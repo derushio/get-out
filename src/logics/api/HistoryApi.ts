@@ -39,7 +39,7 @@ export default class HistoryApi {
         LocalStorage.save(this.indexName, history);
     }
 
-    public static async statisticsWeeklyScoreLavel() {
+    public static async statisticsWeeklyLavel() {
         return ['月', '火', '水', '木', '金', '土', '日'];
     }
 
