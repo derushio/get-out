@@ -7,7 +7,7 @@ v-layout#Home(fill-height column v-resize='redraw')
                 v-layout.full-height(column)
                     h2.text-center {{ user.name }}
                     v-flex.relative
-                        score-meter(:percent='getExpPercent(user.exp)')
+                        score-meter.full-height(:percent='getExpPercent(user.exp)')
                         v-img.absolute.avator(:src='avators[getLevelByExp(user.exp)]' contain)
                     h3.text-center Lv.{{getLevelByExp(user.exp)}} - 次のLvまで:{{getNextExp(user.exp)}}
 
