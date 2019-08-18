@@ -16,14 +16,14 @@ v-layout#Quests(fill-height column)
                         v-list-item-content
                             .overline.mb-4 Level{{ quest.level }}
                             v-list-item-title.headline.mb-1 {{ quest.title }} 
-                            v-list-item-subtitle {{ quest.desc }}
+                            v-list-item-subtitle {{ quest.desc }} <br />獲得できる経験値: {{ quest.exp }}
                         v-list-item-avatar(tile='', size='80', color='grey')
                             v-img(:src='quest.src' @click='openDetailDialog(i)')      
                     v-card-actions
                         v-spacer
                         v-btn(text color='orange' @click='openClearDialog(i)') CLEAR
                         v-btn(icon @click='openDetailDialog(i)')
-                            v-icon info
+                            v-icon(color='blue') fn-info
 </template>
 
 <script lang='ts'>
