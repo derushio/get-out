@@ -64,7 +64,7 @@ export default class Quests extends Vue {
     }
     protected async openDetailDialog(i: number) {
         const quest = this.quests[i];
-        await this.$vdialog.alert({ title: `${quest.title}`, message: `所得できる経験値: ${quest.exp}`});
+        await this.$vdialog.alert({ title: `${quest.title}`, message: `獲得できる経験値: ${quest.exp}`});
     }
 }
 </script>
