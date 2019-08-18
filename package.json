@@ -29,6 +29,7 @@
     "vue": "^2.6.10",
     "vue-chartjs": "^3.4.2",
     "vue-class-component": "^7.1.0",
+    "vue-number-input-spinner": "^2.2.0",
     "vue-property-decorator": "^8.2.1",
     "vue-router": "^3.1.2",
     "vuetify": "^2.0.7",

@@ -30,5 +30,10 @@ export default new Router({
             name: 'ScoreHistory',
             component: () => import('@/components/graph/ScoreHistory.vue'),
         },
+        {
+            path: '/developer',
+            name: 'Developer',
+            component: () => import('@/views/Developer.vue'),
+        },
     ],
 });

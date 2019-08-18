@@ -11,5 +11,9 @@ export default class UserApi {
         LocalStorage.save('user', user);
     }
 
+    public static async deleteUser(){
+        localStorage.removeItem('user');
+    }
+
     protected constructor() {}
 }
