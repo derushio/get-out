@@ -9,7 +9,7 @@ v-layout#Home(fill-height column v-resize='redraw')
                     v-flex.relative
                         score-meter(:percent='getExpPercent(user.exp)')
                         v-img.absolute.avator(:src='avators[getLevelByExp(user.exp)]' contain)
-                    h3.text-center Lv.{{getLevelByExp(user.exp)}}
+                    h3.text-center Lv.{{getLevelByExp(user.exp)}} - 次のLvまで:{{getNextExp(user.exp)}}
 
             .score
                 v-tabs(v-model='tab' @change='setTimeout(redraw, 100)' background-color='primary' dark grow centered show-arrows)
@@ -41,7 +41,7 @@ import ScoreMeter from '@/components/graph/ScoreMeter.vue';
 import HistoryApi from '@/logics/api/HistoryApi';
 import Quest from '@/models/entities/Quest';
 import moment from 'moment';
-import User, { avators, getLevelByExp, getExpPercent } from '@/models/entities/User';
+import User, { avators, getLevelByExp, getExpPercent, getNextExp } from '@/models/entities/User';
 import UserApi from '@/logics/api/UserApi';
 
 @Component({
@@ -64,6 +64,7 @@ export default class Home extends Vue {
     protected avators = avators;
     protected user = null as null | User;
     protected getLevelByExp = getLevelByExp;
+    protected getNextExp = getNextExp;
     protected getExpPercent = getExpPercent;
     protected label = [] as string[];
 

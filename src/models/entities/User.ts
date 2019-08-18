@@ -53,6 +53,15 @@ export function getExpPercent(exp: number) {
     return percent;
 }
 
+export function getNextExp(exp: number) {
+    const level = getLevelByExp(exp);
+    const nextExp = levelExp[level];
+    if (nextExp == null) {
+        return '最高レベル!!';
+    }
+    return nextExp - exp;
+}
+
 export function getCostumeByExp(exp: number) {
     const level = getLevelByExp(exp);
 
